@@ -1,9 +1,7 @@
 {{ define "main" }}
 <div class="content-wrapper">
   <div class="main-content">
-    <div class="main-header">
-      <h1>{{ .Title }}</h1>
-    </div>
+    <h1 style="margin-top: 1.5rem;">{{ .Title }}</h1>
 
     <div id="post-list">
       {{ range (.Paginator.Pages.GroupByDate "2006") }}

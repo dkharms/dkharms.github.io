@@ -29,6 +29,20 @@
   --pink: #f5c2e7;
   --flamingo: #f2cdcd;
   --rosewater: #f5e0dc;
+
+  /* Consistent Spacing System */
+  --space-xs: 0.25rem;   /* 4px - tiny spaces, borders */
+  --space-sm: 0.5rem;    /* 8px - small padding, close elements */
+  --space-md: 1rem;      /* 16px - standard spacing */
+  --space-lg: 1.5rem;    /* 24px - section spacing */
+  --space-xl: 2rem;      /* 32px - large sections */
+  --space-2xl: 3rem;     /* 48px - major sections */
+  --space-3xl: 4rem;     /* 64px - extra large sections */
+  
+  /* Common spacing combinations for consistency */
+  --button-padding: var(--space-xs) var(--space-md);
+  --content-gap: var(--space-lg);
+  --section-gap: var(--space-xl);
 }
 
 * {
@@ -40,10 +54,9 @@ body {
   color: var(--text);
   font-family: "Monaspace Krypton", "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", monospace;
   line-height: 1.4;
-  margin: 0;
-  padding: 1.5rem;
-  max-width: 1200px;
   margin: 0 auto;
+  padding: var(--space-lg);
+  max-width: 1200px;
   font-size: 14px;
   min-height: 100vh;
   display: flex;
@@ -51,33 +64,40 @@ body {
 }
 
 header {
-  margin-bottom: 0.8rem;
-  padding-bottom: 0.6rem;
+  margin-bottom: var(--content-gap);
+  padding-bottom: var(--space-sm);
   border-bottom: 2px dotted var(--surface1);
 }
 
 .site-title {
-  color: var(--mauve);
   font-size: 1.8rem;
   font-weight: bold;
   margin: 0;
+  position: relative;
+}
+
+.site-title::after {
+  content: '█';
+  color: var(--mauve);
+  animation: blink 1s infinite;
+  margin-left: 2px;
 }
 
 .site-description {
   color: var(--subtext0);
-  margin: 0.5rem 0;
+  margin: var(--space-sm) 0;
   font-style: italic;
 }
 
 nav ul {
   list-style: none;
   padding: 0;
-  margin: 1rem 0 0 0;
+  margin: var(--space-md) 0 0 0;
 }
 
 nav li {
   display: inline;
-  margin-right: 2rem;
+  margin-right: var(--space-xl);
 }
 
 nav a {
@@ -97,26 +117,18 @@ main {
 
 footer {
   margin-top: auto;
-  padding-top: 0.8rem;
+  padding-top: var(--content-gap);
   border-top: 2px dotted var(--surface1);
   color: var(--subtext0);
   font-size: 12px;
 }
 
-a {
-  color: var(--sapphire);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--mauve);
-  margin-top: 1.5rem;
-  margin-bottom: 0.6rem;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
   font-weight: bold;
+  position: relative;
 }
 
 .main-content > h1:first-child {
@@ -124,7 +136,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .main-content > .main-header:first-child {
-  margin-top: 1.5rem;
+  margin-top: var(--space-lg);
 }
 
 h1 {
@@ -141,7 +153,7 @@ h3 {
 
 .content-wrapper {
   display: flex;
-  gap: 1.5rem;
+  gap: var(--content-gap);
 }
 
 .main-content {
@@ -153,13 +165,12 @@ h3 {
   flex-shrink: 0;
 }
 
-/* Align main content and sidebar headers */
 .main-header,
 .sidebar-header {
-  height: 2rem;
+  height: var(--section-gap);
   display: flex;
   align-items: flex-end;
-  margin-bottom: 2rem;
+  margin-bottom: var(--section-gap);
 }
 
 .main-header h1,
@@ -174,19 +185,19 @@ h3 {
 }
 
 .tag-section {
-  margin-bottom: 1.2rem;
+  margin-bottom: var(--content-gap);
 }
 
 .tag-section h3 {
   color: var(--mauve);
   font-size: 1rem;
-  margin: 0 0 0.8rem 0;
+  margin: 0 0 var(--content-gap) 0;
   text-transform: uppercase;
 }
 
 .tag-section input {
   width: 100%;
-  padding: 0.5rem;
+  padding: var(--space-sm);
   border: none;
   background: var(--surface0);
   color: var(--text);
@@ -202,18 +213,18 @@ h3 {
 .post-meta {
   color: var(--subtext0);
   font-size: 12px;
-  margin-bottom: 0.4rem;
+  margin-bottom: var(--space-xs);
 }
 
 .post-tags {
-  margin-top: 0.8rem;
+  margin-top: var(--content-gap);
 }
 
 .tag {
   color: var(--mauve);
   text-decoration: none;
   font-size: 12px;
-  margin-right: 1rem;
+  margin-right: var(--content-gap);
 }
 
 .tag:hover {
@@ -227,8 +238,8 @@ h3 {
 }
 
 .post-item {
-  margin-bottom: 1rem;
-  padding-bottom: 0.6rem;
+  margin-bottom: var(--content-gap);
+  padding-bottom: var(--space-sm);
   border-bottom: 2px dotted var(--surface1);
 }
 
@@ -237,7 +248,7 @@ h3 {
 }
 
 .post-title {
-  margin: 0 0 0.3rem 0;
+  margin: 0 0 var(--space-xs) 0;
 }
 
 .post-title a {
@@ -257,27 +268,27 @@ h3 {
 
 .tag-cloud .tag {
   display: inline-block;
-  margin: 0.1rem 0.3rem 0.1rem 0;
+  margin: var(--space-xs) var(--space-xs) var(--space-xs) 0;
   font-size: 11px;
 }
 
 .post-nav {
-  margin-top: 3rem;
-  padding-top: 1.5rem;
+  margin-top: var(--space-3xl);
+  padding-top: var(--content-gap);
   border-top: 2px dotted var(--surface1);
 }
 
 .prev-post, .next-post {
-  margin: 0.5rem 0;
+  margin: var(--space-sm) 0;
 }
 
 .pagination {
-  margin: 3rem 0;
+  margin: var(--space-3xl) 0;
   text-align: center;
 }
 
 .pagination a, .pagination span {
-  margin-right: 1rem;
+  margin-right: var(--content-gap);
   color: var(--blue);
   text-decoration: none;
 }
@@ -295,16 +306,16 @@ h3 {
 code {
   background: var(--surface0);
   color: var(--mauve);
-  padding: 0.2rem 0.4rem;
+  padding: var(--space-xs) var(--space-sm);
   font-family: "Terminess Nerd Font", "Terminus", "Liberation Mono", "DejaVu Sans Mono", "Courier New", monospace;
 }
 
 pre {
   background: var(--surface0);
   color: var(--text);
-  padding: 1.5rem;
+  padding: var(--content-gap);
   overflow-x: auto;
-  margin: 2rem auto;
+  margin: var(--section-gap) auto;
   position: relative;
   border: 1px solid var(--surface1);
   border-radius: 6px;
@@ -318,12 +329,12 @@ pre {
 /* Copy button for code blocks */
 .copy-button {
   position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
+  top: var(--space-sm);
+  right: var(--space-sm);
   background: var(--surface1);
   color: var(--subtext1);
   border: 1px solid var(--surface2);
-  padding: 0.4rem 0.8rem;
+  padding: var(--button-padding);
   font-size: 12px;
   font-family: inherit;
   cursor: pointer;
@@ -357,23 +368,22 @@ pre code {
 
 blockquote {
   border-left: 3px dotted var(--mauve);
-  margin: 2rem 0;
-  padding-left: 1.5rem;
+  margin: var(--section-gap) 0;
+  padding-left: var(--content-gap);
   color: var(--subtext1);
   font-style: italic;
 }
 
 section {
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-3xl);
 }
 
-/* Reduce space between Welcome section and Recent Posts on home page */
 section:first-of-type {
-  margin-bottom: 1rem;
+  margin-bottom: var(--content-gap);
 }
 
 article {
-  margin-bottom: 2rem;
+  margin-bottom: var(--section-gap);
 }
 
 .content {
@@ -381,7 +391,7 @@ article {
 }
 
 .year-section {
-  margin-bottom: 2.5rem;
+  margin-bottom: var(--space-2xl);
 }
 
 .year-section:first-child {
@@ -393,15 +403,15 @@ article {
   display: block;
   text-align: center;
   color: var(--overlay0);
-  margin: 2rem 0;
+  margin: var(--section-gap) 0;
   font-size: 1rem;
-  letter-spacing: 0.5rem;
+  letter-spacing: var(--space-sm);
 }
 
 .year-header {
   color: var(--blue);
   font-size: 1.2rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: var(--space-lg);
   margin-top: 0;
   font-weight: bold;
 }
@@ -424,56 +434,39 @@ article {
   transition: width 0.2s ease;
 }
 
-/* Site Title with Blinking Cursor */
-.site-title {
-  position: relative;
-}
-
-.site-title::after {
-  content: '█';
-  color: var(--mauve);
-  animation: blink 1s infinite;
-  margin-left: 2px;
-}
-
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
 }
 
-/* Ensure all elements use Catppuccin colors */
-.content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
-  color: var(--mauve);
+/* Hugo goat diagram */
+.goat-diagram {
+  margin: var(--space-3xl) auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 }
 
-.content p {
-  color: var(--text);
+.goat-diagram svg {
+  max-width: 450px;
+  height: auto;
+  stroke: var(--mauve);
+  fill: none;
+  stroke-width: 2;
+  display: block;
+  margin: 0 auto;
 }
 
-.content a {
-  color: var(--sapphire);
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .goat-diagram svg {
+    max-width: 350px;
+  }
 }
 
-.content a:hover {
-  color: var(--blue);
-  text-decoration: underline;
-}
-
-/* Hugo internal pagination styling */
-.pagination .page-link {
-  color: var(--blue);
-}
-
-.pagination .page-link:hover {
-  color: var(--mauve);
-}
-
-/* Ensure sidebar elements are themed */
-.sidebar h3 {
-  color: var(--mauve);
-}
-
-/* Override any default browser styles */
+/* Form elements */
 input, textarea, select {
   background: var(--surface0);
   color: var(--text);
@@ -485,27 +478,38 @@ input:focus, textarea:focus, select:focus {
   border-color: var(--mauve);
 }
 
-/* Make sure all links throughout the site are themed */
-main a, article a, section a {
+/* Consolidated link styling */
+a {
   color: var(--sapphire);
+  text-decoration: none;
 }
 
-main a:hover, article a:hover, section a:hover {
+a:hover {
   color: var(--blue);
+  text-decoration: underline;
 }
 
-/* Comprehensive tag styling to override any defaults */
+/* Tag-specific link styling */
 .tag, a.tag, .post-tags a, .tag-cloud a {
-  color: var(--mauve) !important;
+  color: var(--mauve);
   text-decoration: none;
 }
 
 .tag:hover, a.tag:hover, .post-tags a:hover, .tag-cloud a:hover {
-  color: var(--lavender) !important;
+  color: var(--lavender);
   text-decoration: underline;
 }
 
-/* Make sure all headers are properly themed */
+/* Navigation specific styling */
+nav a {
+  color: var(--subtext1);
+}
+
+nav a:hover {
+  color: var(--mauve);
+}
+
+/* Header and title styling */
 h1, h2, h3, h4, h5, h6,
 .post-title, .post-title a,
 .year-header, .site-title {
@@ -516,30 +520,11 @@ h1, h2, h3, h4, h5, h6,
   color: var(--mauve);
 }
 
-/* Navigation override */
-nav a, nav a:visited {
-  color: var(--subtext1);
-}
-
-nav a:hover {
-  color: var(--mauve);
-}
-
-/* Date and meta information */
-.post-meta, .post-meta span {
-  color: var(--subtext0);
-}
-
-/* Ensure consistent text colors */
-p, li, span, div {
-  color: var(--text);
-}
-
 /* Header anchor links */
 .header-anchor {
   float: left;
   margin-left: -1.5em;
-  padding-right: 0.5em;
+  padding-right: var(--space-sm);
   color: var(--overlay0);
   text-decoration: none;
   opacity: 0;
@@ -559,14 +544,10 @@ h6:hover .header-anchor {
   color: var(--mauve);
 }
 
-/* Position for headings with anchors */
-h1, h2, h3, h4, h5, h6 {
-  position: relative;
-}
 
 /* Tags page vertical layout */
 .tags-vertical {
-  margin: 0.5rem 0 2rem 0;
+  margin: var(--space-sm) 0 var(--section-gap) 0;
 }
 
 /* Reduce space between Tags title and tag list */
@@ -575,12 +556,12 @@ main h1 + .tags-vertical {
 }
 
 main h1:has(+ .tags-vertical) {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--content-gap);
 }
 
 .tag-item {
-  margin-bottom: 0.8rem;
-  padding-bottom: 0.6rem;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
   border-bottom: 1px dotted var(--surface1);
 }
 
@@ -591,8 +572,8 @@ main h1:has(+ .tags-vertical) {
 .tag-header {
   display: flex;
   align-items: baseline;
-  gap: 0.8rem;
-  margin-bottom: 0.5rem;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
 }
 
 .tag-name {
@@ -615,13 +596,13 @@ main h1:has(+ .tags-vertical) {
 .tag-latest {
   color: var(--subtext1);
   font-size: 14px;
-  padding-left: 1rem;
+  padding-left: var(--content-gap);
 }
 
 .latest-post {
   color: var(--sapphire);
   text-decoration: none;
-  margin: 0 0.5rem;
+  margin: 0 var(--space-sm);
 }
 
 .latest-post:hover {
@@ -632,7 +613,7 @@ main h1:has(+ .tags-vertical) {
 .latest-date {
   color: var(--subtext0);
   font-size: 12px;
-  margin-left: 0.5rem;
+  margin-left: var(--space-sm);
 }
 
 @media (max-width: 768px) {
@@ -647,25 +628,21 @@ main h1:has(+ .tags-vertical) {
   
   .tag-section {
     display: inline-block;
-    margin-right: 2rem;
+    margin-right: var(--section-gap);
     vertical-align: top;
   }
   
   .tag-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.3rem;
+    gap: var(--space-xs);
   }
   
   .tag-latest {
     padding-left: 0;
   }
   
-  /* Fix copy button on mobile - always show and position properly */
   .copy-button {
     opacity: 1;
-    top: 0.75rem;
-    right: 0.75rem;
-    position: absolute;
   }
 }

@@ -1,0 +1,21 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  
+  <div class="tags-vertical">
+    {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+      <div class="tag-item">
+        <div class="tag-header">
+          <a href="{{ `/tags/` | relURL }}{{ $name | urlize }}" class="tag-name">{{ $name }}</a>
+          <span class="tag-count">({{ $taxonomy.Count }} {{ if eq $taxonomy.Count 1 }}post{{ else }}posts{{ end }})</span>
+        </div>
+        {{ with (index $taxonomy.Pages 0) }}
+          <div class="tag-latest">
+            Latest: <a href="{{ .RelPermalink }}" class="latest-post">{{ .LinkTitle }}</a>
+            <span class="latest-date">{{ .Date.Format "2006-01-02" }}</span>
+          </div>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+{{ end }}

@@ -1,0 +1,43 @@
+{{ define "main" }}
+<article>
+  <header>
+    <h1>{{ .Title }}</h1>
+    <div class="post-meta">
+      <span>Published: {{ .Date.Format "2006-01-02" }}</span>
+      {{ if .Lastmod }}
+      <span> | Updated: {{ .Lastmod.Format "2006-01-02" }}</span>
+      {{ end }}
+      {{ if .Params.author }}
+      <span> | Author: {{ .Params.author }}</span>
+      {{ end }}
+    </div>
+    
+    {{ if .Params.tags }}
+    <div class="post-tags">
+      <span>Tags: </span>
+      {{ range .Params.tags }}
+        <a href="{{ `/tags/` | relURL }}{{ . | urlize }}" class="tag">{{ . }}</a>
+      {{ end }}
+    </div>
+    {{ end }}
+  </header>
+
+  <div class="content">
+    {{ .Content }}
+  </div>
+
+  <nav class="post-nav">
+    {{ if .PrevInSection }}
+    <div class="prev-post">
+      <a href="{{ .PrevInSection.Permalink }}">previous: {{ .PrevInSection.Title }}</a>
+    </div>
+    {{ end }}
+    
+    {{ if .NextInSection }}
+    <div class="next-post">
+      <a href="{{ .NextInSection.Permalink }}">next: {{ .NextInSection.Title }}</a>
+    </div>
+    {{ end }}
+  </nav>
+</article>
+{{ end }}

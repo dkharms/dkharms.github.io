@@ -1,0 +1,49 @@
+{{ define "main" }}
+<div class="content-wrapper">
+  <div class="main-content">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+
+    <div>
+      {{ range (.Pages.GroupByDate "2006") }}
+      <section class="year-section">
+        <h2 class="year-header">{{ .Key }}</h2>
+        <ul class="post-list">
+          {{ range .Pages }}
+          <li class="post-item">
+            <h3 class="post-title">
+              <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+            </h3>
+            <div class="post-meta">
+              <span>{{ .Date.Format "January 02" }}</span>
+              {{ if .Params.tags }}
+              <span> | Tags: 
+                {{ range .Params.tags }}
+                  <a href="{{ `/tags/` | relURL }}{{ . | urlize }}" class="tag">{{ . }}</a>
+                {{ end }}
+              </span>
+              {{ end }}
+            </div>
+            <p>{{ .Summary }}</p>
+          </li>
+          {{ end }}
+        </ul>
+      </section>
+      {{ end }}
+    </div>
+  </div>
+  
+  <aside class="sidebar">
+    <section class="tag-section">
+      <h3>tags</h3>
+      <div class="tag-cloud">
+        {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+          <a href="{{ `/tags/` | relURL }}{{ $name | urlize }}" class="tag">
+            {{ $name }} ({{ $taxonomy.Count }})
+          </a>
+        {{ end }}
+      </div>
+    </section>
+  </aside>
+</div>
+{{ end }}

@@ -1,0 +1,33 @@
+{{ define "main" }}
+<section>
+  <h1>Welcome</h1>
+  
+  <p>This is where I document my journey through the depths of systems programming, 
+  share insights about low-level development, and occasionally rant about compiler optimizations.</p>
+</section>
+
+<section>
+  <h2>Recent Posts</h2>
+  
+  <ul class="post-list">
+    {{ range first 3 (where site.RegularPages "Section" "posts") }}
+    <li class="post-item">
+      <h3 class="post-title">
+        <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+      </h3>
+      <div class="post-meta">
+        <span>{{ .Date.Format "2006-01-02" }}</span>
+        {{ if .Params.tags }}
+        <span> | Tags: 
+          {{ range .Params.tags }}
+            <a href="{{ `/tags/` | relURL }}{{ . | urlize }}" class="tag">{{ . }}</a>
+          {{ end }}
+        </span>
+        {{ end }}
+      </div>
+      <p>{{ .Summary }}</p>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}

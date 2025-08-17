@@ -1,0 +1,92 @@
+{{ define "main" }}
+<div class="content-wrapper">
+  <div class="main-content">
+    <div class="main-header">
+      <h1>{{ .Title }}</h1>
+    </div>
+    
+    {{ .Content }}
+    
+    <div id="post-list">
+      {{ if .Pages }}
+        {{ range (.Pages.GroupByDate "2006") }}
+        <section class="year-section">
+          <h2 class="year-header">{{ .Key }}</h2>
+          <ul class="post-list">
+            {{ range .Pages }}
+            <li class="post-item" data-tags="{{ delimit .Params.tags `,` }}">
+              <h3 class="post-title">
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+              </h3>
+              <div class="post-meta">
+                <span>{{ .Date.Format "January 02, 2006" }}</span>
+                {{ if .Params.author }}
+                <span> | {{ .Params.author }}</span>
+                {{ end }}
+                {{ if .Params.tags }}
+                <span> | Tags: 
+                  {{ range .Params.tags }}
+                    <a href="{{ `/tags/` | relURL }}{{ . | urlize }}" class="tag">{{ . }}</a>
+                  {{ end }}
+                </span>
+                {{ end }}
+              </div>
+              <p>{{ .Summary }}</p>
+            </li>
+            {{ end }}
+          </ul>
+        </section>
+        {{ end }}
+      {{ else }}
+        <p>No posts found with this tag.</p>
+      {{ end }}
+    </div>
+  </div>
+  
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h3>filter</h3>
+    </div>
+    <section class="tag-section">
+      <input type="text" id="tag-search" placeholder="search by tag" />
+    </section>
+    
+    <section class="tag-section">
+      <h3>related tags</h3>
+      <div class="tag-cloud">
+        {{ $currentTag := .Title }}
+        {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+          {{ if ne $name $currentTag }}
+            <a href="{{ `/tags/` | relURL }}{{ $name | urlize }}" class="tag">
+              {{ $name }} ({{ $taxonomy.Count }})
+            </a>
+          {{ end }}
+        {{ end }}
+      </div>
+    </section>
+  </aside>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('tag-search');
+  const postList = document.getElementById('post-list');
+  const posts = postList.querySelectorAll('.post-item');
+
+  searchInput.addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    
+    posts.forEach(function(post) {
+      const tags = post.getAttribute('data-tags').toLowerCase();
+      const title = post.querySelector('.post-title a').textContent.toLowerCase();
+      
+      if (searchTerm === '' || tags.includes(searchTerm) || title.includes(searchTerm)) {
+        post.style.display = 'block';
+      } else {
+        post.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+{{ end }}

@@ -1,0 +1,27 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "dkharms' blog"
+theme = "ascii-gruvbox"
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    lineNos = true
+    lineNumbersInTable = false
+    noClasses = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.parser]
+      autoHeadingID = true
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true
+
+[params]
+  author = "Daniil Porokhnin"
+
+[taxonomies]
+  tag = "tags"
+
+[menu]

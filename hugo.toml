@@ -5,10 +5,12 @@ theme = "ascii-gruvbox"
 
 [markup]
   [markup.highlight]
-    style = "monokai"
+    style = "catppuccin-macchiato"
+
     lineNos = true
     lineNumbersInTable = false
-    noClasses = false
+
+    noClasses = true
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true

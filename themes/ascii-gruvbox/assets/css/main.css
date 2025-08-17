@@ -426,11 +426,6 @@ article {
   51%, 100% { opacity: 0; }
 }
 
-/* Hide cursor after typing animation completes */
-.site-title.typing-complete::after {
-  display: none;
-}
-
 /* Ensure all elements use Catppuccin colors */
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
   color: var(--mauve);

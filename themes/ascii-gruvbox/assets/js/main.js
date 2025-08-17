@@ -10,11 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.innerHTML += text.charAt(i);
                 i++;
                 setTimeout(type, speed);
-            } else {
-                // Hide the blinking cursor after typing is complete
-                setTimeout(() => {
-                    element.classList.add('typing-complete');
-                }, 1000);
             }
         }
         type();

@@ -6,7 +6,7 @@ tags: ["memory", "systems", "c", "performance"]
 author: "Systems Dev"
 ---
 
-Memory management is the cornerstone of systems programming. Understanding how memory allocation works at the kernel level is crucial for writing efficient and safe code.
+Memory management is the cornerstone of systems programming{{< cite "knuth1997art" "Knuth, D. E. (1997). *The Art of Computer Programming, Volume 1: Fundamental Algorithms*. Addison-Wesley." >}}. Understanding how memory allocation works at the kernel level is crucial for writing efficient and safe code{{< cite "love2010linux" "Love, R. (2010). *Linux Kernel Development*. Addison-Wesley Professional." >}}.
 
 <!--more-->
 
@@ -73,9 +73,9 @@ void heap_example() {
 
 ## Key Takeaways
 
-1. Always understand your memory access patterns
+1. Always understand your memory access patterns{{< cite "drepper2007memory" "Drepper, U. (2007). *What Every Programmer Should Know About Memory*. Red Hat, Inc." >}}
 2. Minimize dynamic allocation in performance-critical code
-3. Use tools like Valgrind to detect memory leaks
+3. Use tools like Valgrind to detect memory leaks{{< cite "seward2005valgrind" "Seward, J., & Nethercote, N. (2005). Using Valgrind to detect undefined value errors with bit-precision. *Proceedings of the USENIX Annual Technical Conference*." >}}
 4. Consider memory alignment for optimal performance
 
-Memory management is an art that requires both theoretical knowledge and practical experience. Master it, and you'll write better systems code.
+Memory management is an art that requires both theoretical knowledge and practical experience{{< cite "knuth1997art" "Knuth, D. E. (1997). *The Art of Computer Programming, Volume 1: Fundamental Algorithms*. Addison-Wesley." >}}. Master it, and you'll write better systems code.

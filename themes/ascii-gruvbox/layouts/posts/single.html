@@ -26,6 +26,20 @@
     {{ .Content }}
   </div>
 
+  {{ if .Scratch.Get "citations" }}
+  <div class="footnotes">
+    <h3 id="references">References</h3>
+    <ol>
+      {{ range $index, $citation := .Scratch.Get "citations" }}
+      <li id="footnote-{{ $citation.id }}">
+        {{ $citation.text | markdownify }}
+        <a href="#citation-{{ $citation.id }}-{{ add $index 1 }}" class="footnote-backref">↩</a>
+      </li>
+      {{ end }}
+    </ol>
+  </div>
+  {{ end }}
+
   <nav class="post-nav">
     {{ if .PrevInSection }}
     <div class="prev-post">

@@ -1,0 +1,28 @@
+{{- $id := .Get 0 -}}
+{{- $text := .Get 1 -}}
+{{- if not $id -}}
+  {{- errorf "cite shortcode requires citation ID as first parameter" -}}
+{{- end -}}
+{{- if not $text -}}
+  {{- errorf "cite shortcode requires citation text as second parameter" -}}
+{{- end -}}
+{{- $page := .Page -}}
+{{- if not (.Page.Scratch.Get "citations") -}}
+  {{- .Page.Scratch.Set "citations" slice -}}
+{{- end -}}
+{{- $citations := $page.Scratch.Get "citations" -}}
+{{- $citationExists := false -}}
+{{- $citationNumber := 0 -}}
+{{- range $index, $citation := $citations -}}
+  {{- if eq $citation.id $id -}}
+    {{- $citationExists = true -}}
+    {{- $citationNumber = add $index 1 -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $citationExists -}}
+  {{- $newCitation := dict "id" $id "text" $text -}}
+  {{- $citations = $citations | append $newCitation -}}
+  {{- $page.Scratch.Set "citations" $citations -}}
+  {{- $citationNumber = len $citations -}}
+{{- end -}}
+<a href="#footnote-{{ $id }}" id="citation-{{ $id }}-{{ $citationNumber }}" class="citation-link">[{{ $citationNumber }}]</a>

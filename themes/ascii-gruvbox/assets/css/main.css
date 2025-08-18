@@ -616,6 +616,63 @@ main h1:has(+ .tags-vertical) {
   margin-left: var(--space-sm);
 }
 
+/* Citations and Footnotes */
+.citation-link {
+  color: var(--mauve);
+  text-decoration: none;
+  font-size: 0.85em;
+  vertical-align: super;
+  padding: 0 0.2em;
+  font-weight: bold;
+}
+
+.citation-link:hover {
+  color: var(--lavender);
+  text-decoration: underline;
+}
+
+.footnotes {
+  margin-top: var(--space-3xl);
+  padding-top: var(--content-gap);
+}
+
+.footnotes h3 {
+  color: var(--mauve);
+  font-size: 1.1rem;
+  margin-bottom: var(--space-lg);
+}
+
+.footnotes ol {
+  counter-reset: footnote-counter;
+  padding-left: var(--space-xl);
+}
+
+.footnotes li {
+  margin-bottom: var(--space-md);
+  line-height: 1.5;
+  counter-increment: footnote-counter;
+  position: relative;
+}
+
+.footnotes li::marker {
+  color: var(--subtext0);
+  font-weight: bold;
+}
+
+.footnote-backref {
+  color: var(--mauve);
+  text-decoration: none;
+  margin-left: var(--space-sm);
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+.footnote-backref:hover {
+  color: var(--lavender);
+  text-decoration: none;
+  opacity: 1;
+}
+
 @media (max-width: 768px) {
   .content-wrapper {
     flex-direction: column;

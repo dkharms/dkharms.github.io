@@ -648,7 +648,7 @@ main h1:has(+ .tags-vertical) {
 }
 
 .footnotes li {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
   line-height: 1.5;
   counter-increment: footnote-counter;
   position: relative;
